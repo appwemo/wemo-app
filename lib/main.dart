@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print
 import 'dart:async';
-import 'package:etiocart/mobile/view/authentication/mobile_sign_up.dart';
+import 'package:etiocart/mobile/views/authentication/mobile_sign_up.dart';
 import 'package:flutter/material.dart';
-import './mobile/view/splash screen/splash.dart';
-import 'mobile/view/authentication/mobile_sign_in.dart';
+import 'mobile/views/splash screen/splash.dart';
+import 'mobile/views/authentication/mobile_sign_in.dart';
 // import './constants/my_shared_pref.dart';
 import 'responsive.dart';
 

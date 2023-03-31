@@ -1,7 +1,7 @@
-import 'package:etiocart/mobile/view/authentication/mobile_sign_in.dart';
+import 'package:etiocart/mobile/views/authentication/mobile_sign_in.dart';
 import 'package:flutter/material.dart';
 
-import 'mobile/view/authentication/mobile_sign_up.dart';
+import 'mobile/views/authentication/mobile_sign_up.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget mobileScaffold;
