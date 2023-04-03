@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print
 import 'dart:async';
+import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/authentication/mobile_sign_up.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'mobile/views/splash screen/splash.dart';
 import 'mobile/views/authentication/mobile_sign_in.dart';
@@ -44,6 +46,7 @@ class _MyAppState extends State<MyApp> {
     {
       return MaterialApp(
         theme: ThemeData(
+          useMaterial3: true,
             //toset theme font for the entire app
             fontFamily: 'SF-Pro', colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber)),
         //checks if LoggedIn value is true
@@ -77,12 +80,18 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   //only called once the stateful widget is inserted into the widget tree
   void initState() {
-    super.initState();
+    super.initState();}
     //we use a timer to show the splash screen
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    //this is the splash screen container
     Timer(
         Duration(seconds: 4),
         //after the 3 seconds the replacement is pushed into the screen
-        () => Navigator.pushReplacement(
+            () => Navigator.pushReplacement(
             context,
             //thus the replacement is BottomNavBar
             //as soon as the app starts and the stateful widget is inserted
@@ -90,20 +99,13 @@ class MyHomePageState extends State<MyHomePage> {
             // of showing that it will render the main screen BottomNavBar()
             MaterialPageRoute(
                 builder: (context) =>
-                    // isLoggedIn ? LoginScreen() : BottomNavBar()
-                    ResponsiveLayout(
-                      mobileScaffold: MobileSignUp(),
-                      desktopScaffold: MobileSignUp(),
-                      tabletScaffold: MobileSignIn(),
-                    ))));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    //this is the splash screen container
+                // isLoggedIn ? LoginScreen() : BottomNavBar()
+Splash()
+            )));
     return Container(
-        color: Colors.white,
+        color: StylingData.bgColor,
         //splash screen file
-        child: Splash());
+        child: Icon(CupertinoIcons.airplane, size: 50,)
+    );
   }
 }

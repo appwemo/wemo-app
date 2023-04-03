@@ -1,3 +1,5 @@
+import 'package:etiocart/mobile/views/authentication/mobile_sign_in.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/theme_data.dart';
 
@@ -35,27 +37,27 @@ class MobileSignUp extends StatelessWidget {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  firstNameField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  lastNameField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  emailField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  phoneField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  handleField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Field1(width, height),
+                  birthdateField(width, height),
                   SizedBox(
                     height: height * 0.02,
                   ),
@@ -83,8 +85,9 @@ class MobileSignUp extends StatelessWidget {
           child: Container(
             width: width * 0.095,
             height: height * 0.045,
+            child: Icon(CupertinoIcons.pen,size: 35, color: StylingData.bgColor,),
             decoration: BoxDecoration(
-                color: StylingData.purple1.withOpacity(0.4),
+                color: StylingData.purple1.withOpacity(0.95),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
           ),
         )
@@ -109,7 +112,15 @@ class MobileSignUp extends StatelessWidget {
               side: BorderSide(color: StylingData.purple1),
               borderRadius: BorderRadius.circular(25),
             ))),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                  // isLoggedIn ? LoginScreen() : BottomNavBar()
+                  MobileSignIn()
+              ));
+        },
         child: const Text(
           'Sign Up',
           style: StylingData.buttonText,
@@ -118,7 +129,8 @@ class MobileSignUp extends StatelessWidget {
     );
   }
 
-  userNameField(double width, double height) {
+
+  firstNameField(double width, double height) {
     return SizedBox(
       width: width * 0.95,
       height: height * 0.06,
@@ -128,13 +140,17 @@ class MobileSignUp extends StatelessWidget {
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             enabled: true,
-            fillColor: StylingData.purple3,
+            fillColor: StylingData.grey2,
             filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: StylingData.purple2),
+              borderSide: BorderSide(color: StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: 'Enter username',
+            labelText: 'First Name',
             labelStyle: StylingData.subText,
             hintStyle: StylingData.subText,
             border: InputBorder.none),
@@ -142,7 +158,7 @@ class MobileSignUp extends StatelessWidget {
     );
   }
 
-  Field1(double width, double height) {
+  lastNameField(double width, double height) {
     return SizedBox(
       width: width * 0.95,
       height: height * 0.06,
@@ -152,13 +168,17 @@ class MobileSignUp extends StatelessWidget {
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             enabled: true,
-            fillColor: StylingData.grey2.withOpacity(0.6),
+            fillColor: StylingData.grey2,
             filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
+              borderSide: BorderSide(color: StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: 'First name',
+            labelText: 'Last Name',
             labelStyle: StylingData.subText,
             hintStyle: StylingData.subText,
             border: InputBorder.none),
@@ -166,7 +186,94 @@ class MobileSignUp extends StatelessWidget {
     );
   }
 
-  Field2(double width, double height) {
+  emailField(double width, double height) {
+    return SizedBox(
+      width: width * 0.95,
+      height: height * 0.06,
+      child: TextFormField(
+        autofocus: false,
+        maxLines: 1,
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
+            enabled: true,
+            fillColor: StylingData.grey2,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: StylingData.grey3),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            labelText: 'Email',
+            labelStyle: StylingData.subText,
+            hintStyle: StylingData.subText,
+            border: InputBorder.none),
+      ),
+    );
+  }
+
+  phoneField(double width, double height) {
+    return SizedBox(
+      width: width * 0.95,
+      height: height * 0.06,
+      child: TextFormField(
+        autofocus: false,
+        maxLines: 1,
+        keyboardType: TextInputType.phone,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
+            enabled: true,
+            fillColor: StylingData.grey2,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: StylingData.grey3),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            labelText: '+251',
+            labelStyle: StylingData.subText,
+            hintStyle: StylingData.subText,
+            border: InputBorder.none),
+      ),
+    );
+  }
+
+  birthdateField(double width, double height) {
+    return SizedBox(
+      width: width * 0.95,
+      height: height * 0.06,
+      child: TextFormField(
+        autofocus: false,
+        maxLines: 1,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
+            enabled: true,
+            fillColor: StylingData.grey2,
+            filled: true,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: StylingData.grey3)
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: StylingData.grey3),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            labelText: 'Birthdate',
+            labelStyle: StylingData.subText,
+            hintStyle: StylingData.subText,
+            border: InputBorder.none),
+      ),
+    );
+  }
+
+  handleField(double width, double height) {
     return SizedBox(
       width: width * 0.95,
       height: height * 0.06,
@@ -179,106 +286,10 @@ class MobileSignUp extends StatelessWidget {
             fillColor: StylingData.grey2,
             filled: true,
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
+              borderSide: BorderSide(color: StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
-            labelText: 'First name',
-            labelStyle: StylingData.subText,
-            hintStyle: StylingData.subText,
-            border: InputBorder.none),
-      ),
-    );
-  }
-
-  Field3(double width, double height) {
-    return SizedBox(
-      width: width * 0.95,
-      height: height * 0.06,
-      child: TextFormField(
-        autofocus: false,
-        maxLines: 1,
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
-            enabled: true,
-            fillColor: StylingData.grey2,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            labelText: 'First name',
-            labelStyle: StylingData.subText,
-            hintStyle: StylingData.subText,
-            border: InputBorder.none),
-      ),
-    );
-  }
-
-  Field4(double width, double height) {
-    return SizedBox(
-      width: width * 0.95,
-      height: height * 0.06,
-      child: TextFormField(
-        autofocus: false,
-        maxLines: 1,
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
-            enabled: true,
-            fillColor: StylingData.grey2,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            labelText: 'First name',
-            labelStyle: StylingData.subText,
-            hintStyle: StylingData.subText,
-            border: InputBorder.none),
-      ),
-    );
-  }
-
-  Field5(double width, double height) {
-    return SizedBox(
-      width: width * 0.95,
-      height: height * 0.06,
-      child: TextFormField(
-        autofocus: false,
-        maxLines: 1,
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
-            enabled: true,
-            fillColor: StylingData.grey2,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            labelText: 'First name',
-            labelStyle: StylingData.subText,
-            hintStyle: StylingData.subText,
-            border: InputBorder.none),
-      ),
-    );
-  }
-
-  Field6(double width, double height) {
-    return SizedBox(
-      width: width * 0.95,
-      height: height * 0.06,
-      child: TextFormField(
-        autofocus: false,
-        maxLines: 1,
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
-            enabled: true,
-            fillColor: StylingData.grey2,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade50),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            labelText: 'First name',
+            labelText: 'Handle',
             labelStyle: StylingData.subText,
             hintStyle: StylingData.subText,
             border: InputBorder.none),

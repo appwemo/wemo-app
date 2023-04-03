@@ -1,3 +1,5 @@
+import 'package:etiocart/mobile/views/bottom_nav/bottom_nav.dart';
+import 'package:etiocart/mobile/views/discover/discover.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/theme_data.dart';
 
@@ -57,6 +59,7 @@ class _MobileSignInState extends State<MobileSignIn> {
           elevation: 0,
           backgroundColor: StylingData.bgColor,
           foregroundColor: StylingData.frColor,
+          automaticallyImplyLeading: true,
           title: const Text(
             '',
             style: StylingData.appBarText,
@@ -190,10 +193,14 @@ class _MobileSignInState extends State<MobileSignIn> {
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             enabled: true,
-            fillColor: StylingData.purple3,
+            fillColor: StylingData.grey2,
             filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:StylingData.purple2),
+              borderSide: BorderSide(color:StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: 'Enter username',
@@ -216,10 +223,14 @@ class _MobileSignInState extends State<MobileSignIn> {
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(10),
             enabled: true,
-            fillColor: StylingData.purple3,
+            fillColor: StylingData.grey2,
             filled: true,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
+            ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:StylingData.purple2),
+              borderSide: BorderSide(color:StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: 'Enter username',
@@ -247,7 +258,15 @@ class _MobileSignInState extends State<MobileSignIn> {
               side: BorderSide(color:StylingData.purple1),
               borderRadius: BorderRadius.circular(25),
             ))),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                  // isLoggedIn ? LoginScreen() : BottomNavBar()
+                  BottomNav()
+              ));
+        },
         child: const Text(
           'Sign In',
           style: StylingData.buttonText,
