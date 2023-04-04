@@ -1,5 +1,6 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/events/payment.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookEvent extends StatefulWidget {
@@ -40,6 +41,9 @@ class _BookEventState extends State<BookEvent> {
     return Scaffold(
       backgroundColor: StylingData.bgColor,
       appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(CupertinoIcons.back)),
         backgroundColor: StylingData.bgColor,
         foregroundColor: StylingData.frColor,
         elevation: 0,
@@ -162,8 +166,11 @@ class _BookEventState extends State<BookEvent> {
                   borderRadius: BorderRadius.circular(25),
                 ))),
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Payment()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Payment()),
+          );
+
         },
         child: const Text(
           'Continue-100 Birr',

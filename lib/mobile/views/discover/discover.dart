@@ -1,5 +1,5 @@
 import 'package:etiocart/constants/theme_data.dart';
-import 'package:etiocart/mobile/views/events/event_detail.dart';
+import 'package:etiocart/mobile/views/events/ticket_info_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,14 +43,10 @@ class Discover extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return InkWell(
-
-      onTap: () =>           Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-              // isLoggedIn ? LoginScreen() : BottomNavBar()
-              EventDetail()
-          )),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => TicketInformationDetail()),
+      ),
       child: Column(
         children: [
           Container(

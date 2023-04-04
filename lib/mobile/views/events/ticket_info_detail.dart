@@ -13,30 +13,28 @@ class TicketInformationDetail extends StatefulWidget {
 class _TicketInformationDetailState extends State<TicketInformationDetail> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          foregroundColor: StylingData.frColor,
-          backgroundColor: StylingData.bgColor,
-          title: const Text('Ticket info'),
-        ),
-        body: ListView(
-          children: [
-            eventPhotoCard(),
-            dateTimeInfo(),
-            locationInfo(),
-            priceInfo(),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: aboutEvent(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-              child: bookEventButton(context),
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        foregroundColor: StylingData.frColor,
+        backgroundColor: StylingData.bgColor,
+        title: const Text('Ticket info'),
+      ),
+      body: ListView(
+        children: [
+          eventPhotoCard(),
+          dateTimeInfo(),
+          locationInfo(),
+          priceInfo(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: aboutEvent(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            child: bookEventButton(context),
+          ),
+        ],
       ),
     );
   }
@@ -59,8 +57,10 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
               borderRadius: BorderRadius.circular(25),
             ))),
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => BookEvent()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BookEvent()),
+          );
         },
         child: const Text(
           'Book Event',
@@ -195,7 +195,7 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
                       ))),
                   onPressed: () => null,
                   child: const Text(
-                    'See Location on Maps',
+                    'Add to My Calendar',
                     style: TextStyle(color: Colors.white),
                   )),
             )
@@ -312,7 +312,7 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 const Text(
@@ -323,7 +323,7 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 10),
             child: const Text(
                 'Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb'),
           )

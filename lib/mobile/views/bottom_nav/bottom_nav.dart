@@ -1,5 +1,7 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/discover/discover.dart';
+import 'package:etiocart/mobile/views/notification/notifications.dart';
+import 'package:etiocart/mobile/views/search/custom_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,15 +55,21 @@ class _BottomNavState extends State<BottomNav> {
               padding: const EdgeInsets.only(left: 10, right: 15),
               child: Row(
                 children: [
-                  Icon(CupertinoIcons.search),
-                  SizedBox(width:width*0.05 ,),
+                  IconButton(
+                      onPressed: () {
+                        showSearch(context: context, delegate: CustomSearch());
+                      },
+                      icon: Icon(
+                        CupertinoIcons.search,
+                        size: 25,
+                      )),
                   InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => Notifications()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notifications()),
+                      );
                     },
                     child: Icon(CupertinoIcons.bell),
                     // child: ImageIcon(
@@ -71,6 +79,22 @@ class _BottomNavState extends State<BottomNav> {
                     //       'asset/icons/notification.png',
                     //     )),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 5),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Notifications()),
+                        );
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                      )
+                    ),
+                  ),
+
                 ],
               ),
             ),

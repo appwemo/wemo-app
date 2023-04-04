@@ -15,12 +15,24 @@ class StylingData {
   );
   static const TextStyle titleText2 = TextStyle(
     color: Colors.black,
+    fontSize: 20,
+    // fontFamily: 'SF-Pro',
+    fontWeight: FontWeight.w500,
+  );
+  static const TextStyle titleText3 = TextStyle(
+    color: Colors.grey,
     fontSize: 18,
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
   );
   static const TextStyle buttonText = TextStyle(
     color: Colors.white,
+    fontSize: 18,
+    // fontFamily: 'SF-Pro',
+    fontWeight: FontWeight.w500,
+  );
+  static const TextStyle buttonText2 = TextStyle(
+    color: Colors.black,
     fontSize: 18,
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
@@ -54,11 +66,11 @@ class StylingData {
     fontSize: 18,
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.normal,
-  );  static const TextStyle purpText = TextStyle(
+  );
+  static const TextStyle purpText = TextStyle(
     color: StylingData.purple1,
     fontWeight: FontWeight.normal,
   );
-
   static const bgColor = Colors.white;
   static const frColor = Colors.black;
   static const accentCol = Colors.amber;

@@ -37,6 +37,7 @@ dependencies:
   # shared_preferences: ^2.0.20
   flutter_svg: ^0.19.3
   http: ^0.13.5
+  qr_flutter: ^4.0.0
   # local_auth: ^2.1.6
   # flutter_bloc: ^8.1.2
   # flutter_secure_storage: ^8.0.0
