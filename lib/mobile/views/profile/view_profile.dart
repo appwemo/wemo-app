@@ -1,66 +1,61 @@
-import 'package:etiocart/mobile/views/authentication/mobile_sign_in.dart';
+import 'package:etiocart/constants/theme_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../constants/theme_data.dart';
 
-class MobileSignUp extends StatelessWidget {
-  const MobileSignUp({super.key});
+class ViewProfile extends StatelessWidget {
+  const ViewProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
+    return  Scaffold(
+      backgroundColor: StylingData.bgColor,
+      appBar: AppBar(
         backgroundColor: StylingData.bgColor,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: StylingData.bgColor,
-          foregroundColor: StylingData.frColor,
-          title: const Text(
-            'Fill Your Profile',
-            style: StylingData.appBarText,
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
-          child: ListView(
-            children: [
-              Center(child: profileAvatar(context),),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              firstNameField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              lastNameField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              emailField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              phoneField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              handleField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              birthdateField(width, height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              signUpButton(context),
-            ],
-          ),
+        foregroundColor: StylingData.frColor,
+        title: Text('EditProfile',style: StylingData.appBarText,),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 0),
+        child: ListView(
+          children: [
+            Center(child: profileAvatar(context),),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            firstNameField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            lastNameField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            emailField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            phoneField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            handleField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Text('First Name'),
+            birthdateField(width, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            signUpButton(context),
+          ],
         ),
       ),
     );
@@ -80,10 +75,10 @@ class MobileSignUp extends StatelessWidget {
           child: Container(
             width: width * 0.095,
             height: height * 0.045,
-            child: Icon(CupertinoIcons.pen,size: 35, color: StylingData.bgColor,),
             decoration: BoxDecoration(
                 color: StylingData.purple1.withOpacity(0.95),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
+            child: const Icon(CupertinoIcons.pen,size: 35, color: StylingData.bgColor,),
           ),
         )
       ],
@@ -99,22 +94,15 @@ class MobileSignUp extends StatelessWidget {
       width: width * 0.8,
       child: ElevatedButton(
         style: ButtonStyle(
-            //sets the button elevation to zero
+          //sets the button elevation to zero
             elevation: MaterialStateProperty.all(0),
             backgroundColor: MaterialStateProperty.all(StylingData.purple1),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-              side: BorderSide(color: StylingData.purple1),
-              borderRadius: BorderRadius.circular(25),
-            ))),
+                  side: const BorderSide(color: StylingData.purple1),
+                  borderRadius: BorderRadius.circular(25),
+                ))),
         onPressed: () {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                  // isLoggedIn ? LoginScreen() : BottomNavBar()
-                  MobileSignIn()
-              ));
         },
         child: const Text(
           'Sign Up',
@@ -253,8 +241,8 @@ class MobileSignUp extends StatelessWidget {
             fillColor: StylingData.grey2,
             filled: true,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: StylingData.grey3)
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: StylingData.grey3)
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: StylingData.grey3),

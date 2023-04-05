@@ -19,11 +19,27 @@ class StylingData {
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
   );
+  static const TextStyle logoutButton = TextStyle(
+    color: Colors.red,
+    fontSize: 22,
+    // fontFamily: 'SF-Pro',
+    fontWeight: FontWeight.w500,
+  );  static const TextStyle logoutButton2 = TextStyle(
+    color: Colors.red,
+    fontSize: 18,
+    // fontFamily: 'SF-Pro',
+    fontWeight: FontWeight.w500,
+  );
   static const TextStyle titleText3 = TextStyle(
     color: Colors.grey,
     fontSize: 18,
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
+  );  static const TextStyle mediumText = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    // fontFamily: 'SF-Pro',
+    fontWeight: FontWeight.w400,
   );
   static const TextStyle buttonText = TextStyle(
     color: Colors.white,

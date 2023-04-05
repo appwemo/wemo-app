@@ -17,7 +17,10 @@ class Discover extends StatelessWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              featuredNavigator(),
+              Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: featuredNavigator(),
+              ),
               Padding(
                   padding: EdgeInsets.only(
                 top: 5,
@@ -25,7 +28,10 @@ class Discover extends StatelessWidget {
               )),
               featuredContent(context),
               Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
-              popularEventsNavigator(),
+              Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: popularEventsNavigator(),
+              ),
               Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -50,7 +56,7 @@ class Discover extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: width * 0.7,
+            width: width * 0.8,
             height: height * 0.25,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
@@ -211,78 +217,84 @@ class Discover extends StatelessWidget {
     return FittedBox(
       child: Row(
         children: [
-          Column(
-            children: [
-              Container(
-                width: width * 0.5,
-                height: height * 0.2,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: StylingData.grey1.withOpacity(0.6)),
-              ),
-              const Text(
-                'National Festival',
-                style: StylingData.titleText,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const Text(
-                'Monday Dec 24 18:00-23:00',
-                style: StylingData.purpText3,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Icon(
-                    CupertinoIcons.location_solid,
-                    color: StylingData.purple1,
-                  ),
-                  Text(
-                    'Grand Park New York',
-                    style: StylingData.subText,
-                  ),
-                  const Icon(
-                    CupertinoIcons.heart,
-                    color: StylingData.purple1,
-                  ),
-                ],
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              children: [
+                Container(
+                  width: width * 0.5,
+                  height: height * 0.2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: StylingData.grey1.withOpacity(0.6)),
+                ),
+                const Text(
+                  'National Festival',
+                  style: StylingData.titleText,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Text(
+                  'Monday Dec 24 18:00-23:00',
+                  style: StylingData.purpText3,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Icon(
+                      CupertinoIcons.location_solid,
+                      color: StylingData.purple1,
+                    ),
+                    Text(
+                      'Grand Park New York',
+                      style: StylingData.subText,
+                    ),
+                    const Icon(
+                      CupertinoIcons.heart,
+                      color: StylingData.purple1,
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-          Column(
-            children: [
-              Container(
-                width: width * 0.5,
-                height: height * 0.2,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: StylingData.grey1.withOpacity(0.6)),
-              ),
-              const Text(
-                'National  Festival',
-                style: StylingData.titleText,
-              ),
-              const Text(
-                'Monday Dec 24 18:00-23:00',
-                style: StylingData.purpText3,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Icon(
-                    CupertinoIcons.location_solid,
-                    color: StylingData.purple1,
-                  ),
-                  Text(
-                    'Grand Park New York',
-                    style: StylingData.subText,
-                  ),
-                  const Icon(
-                    CupertinoIcons.heart,
-                    color: StylingData.purple1,
-                  ),
-                ],
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              children: [
+                Container(
+                  width: width * 0.5,
+                  height: height * 0.2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: StylingData.grey1.withOpacity(0.6)),
+                ),
+                const Text(
+                  'National  Festival',
+                  style: StylingData.titleText,
+                ),
+                const Text(
+                  'Monday Dec 24 18:00-23:00',
+                  style: StylingData.purpText3,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Icon(
+                      CupertinoIcons.location_solid,
+                      color: StylingData.purple1,
+                    ),
+                    Text(
+                      'Grand Park New York',
+                      style: StylingData.subText,
+                    ),
+                    const Icon(
+                      CupertinoIcons.heart,
+                      color: StylingData.purple1,
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),
