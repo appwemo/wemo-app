@@ -40,10 +40,10 @@ class ProfilePage extends StatelessWidget {
                           onTap: () {},
                           child: CircleAvatar(
                             radius: 23,
-                            backgroundColor: StylingData.grey3,
+                            backgroundColor: StylingData.purple1,
                               child: Icon(
                             CupertinoIcons.pen,
-                            color: StylingData.frColor,
+                            color: StylingData.bgColor,
                           )),
                         ),
                       )

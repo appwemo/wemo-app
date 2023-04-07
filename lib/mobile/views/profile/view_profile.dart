@@ -14,7 +14,7 @@ class ViewProfile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: StylingData.bgColor,
         foregroundColor: StylingData.frColor,
-        title: Text('EditProfile',style: StylingData.appBarText,),
+        title: Text('Edit Profile',style: StylingData.appBarText,),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 0),
@@ -105,7 +105,7 @@ class ViewProfile extends StatelessWidget {
         onPressed: () {
         },
         child: const Text(
-          'Sign Up',
+          'Update',
           style: StylingData.buttonText,
         ),
       ),
