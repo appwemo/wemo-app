@@ -1,10 +1,15 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/events/ticket_info_detail.dart';
+import 'package:etiocart/repository/event_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/export_model.dart';
+import '../events/ticket_info_detail copy.dart';
+
 class Discover extends StatelessWidget {
-  const Discover({Key? key}) : super(key: key);
+  Discover({Key? key}) : super(key: key);
+  final Future<List<Events>> _getall_Event = EventServics().fetchItems();
 
   @override
   Widget build(BuildContext context) {

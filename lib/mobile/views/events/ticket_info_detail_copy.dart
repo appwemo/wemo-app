@@ -1,42 +1,60 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/events/book_event.dart';
+import 'package:etiocart/repository/event_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class TicketInformationDetail extends StatefulWidget {
+import '../../model/export_model.dart';
+
+class CopyTicketInformationDetail extends StatefulWidget {
+  final int id;
+
+  final Events data;
+
+  CopyTicketInformationDetail(
+      {super.key, required this.data, required this.id});
   @override
-  State<TicketInformationDetail> createState() =>
+  State<CopyTicketInformationDetail> createState() =>
       _TicketInformationDetailState();
 }
 
-class _TicketInformationDetailState extends State<TicketInformationDetail> {
+class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
+  // final Future<List<Tickets>> _futureTicket = EventServics().fetchTicket(widget.id);
+
+  @override
+  void initState() {
+    // _futureTickets = widget.id;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        foregroundColor: StylingData.frColor,
-        backgroundColor: StylingData.bgColor,
-        title: const Text('Ticket info'),
-      ),
-      body: ListView(
-        children: [
-          eventPhotoCard(),
-          dateTimeInfo(),
-          locationInfo(),
-          priceInfo(),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: aboutEvent(),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: bookEventButton(context),
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          elevation: 0,
+          foregroundColor: StylingData.frColor,
+          backgroundColor: StylingData.bgColor,
+          title: const Text('Ticket info'),
+        ),
+        body: ListView(
+          children: [
+            eventPhotoCard(),
+            dateTimeInfo(),
+            locationInfo(),
+            priceInfo(),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: aboutEvent(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: bookEventButton(context),
+            ),
+          ],
+        ));
+
+    // bookEventButton(context),
   }
 
   bookEventButton(context) {
@@ -138,10 +156,12 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('National Music Festival',
+                  Text(
+                      // 'National Musicc Festival',
+                      '${widget.data.title}',
                       style: StylingData.bigBoldText),
-                  const Text(
-                    " Bole Millenium",
+                  Text(
+                    " Bole Millenium ${widget.data.title}",
                     // 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s to make a type specimen book',
                     softWrap: true,
                     maxLines: 4,
@@ -305,7 +325,9 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('World Of Music',
+                      Text(
+                          // 'World Of Music'
+                          '${widget.data.organizer!.name}',
                           style: StylingData.titleText2),
                       const Text('Organizer'),
                     ],
@@ -328,8 +350,9 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
           Padding(
             padding:
                 const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 10),
-            child: const Text(
-                'Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb'),
+            child: Text(
+                'Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb Lorem ipsum tte,a sdakjsd kjjas dhajshd ahsbdah ashdb'
+                '${widget.data.description}'),
           )
         ],
       ),

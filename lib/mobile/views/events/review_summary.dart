@@ -225,7 +225,7 @@ class ReviewSummary extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return AlertDialog(
-      elevation: 5,
+        elevation: 5,
         title: Center(child: const Text('Confirmation')),
         backgroundColor: StylingData.bgColor,
         content: SingleChildScrollView(
