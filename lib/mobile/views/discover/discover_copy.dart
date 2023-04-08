@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/export_model.dart';
-import '../events/ticket_info_detail copy.dart';
+import '../events/ticket_info_detail_copy.dart';
 
 class CopyDiscover extends StatelessWidget {
   CopyDiscover({Key? key}) : super(key: key);

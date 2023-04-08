@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../discover/discover_copy.dart';
+import '../moments/moments_page copy.dart';
 import '../moments/moments_page.dart';
 
 class BottomNav extends StatefulWidget {
@@ -29,7 +30,7 @@ class _BottomNavState extends State<BottomNav> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     CopyDiscover(),
-    const MomentsPage(),
+    CopyMomentsPage(),
     const TransportPage(),
     const ProfilePage(),
   ];
