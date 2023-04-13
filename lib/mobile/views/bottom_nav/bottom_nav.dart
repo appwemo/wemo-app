@@ -8,6 +8,8 @@ import 'package:etiocart/mobile/views/transport/transport_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../discover/discover_copy.dart';
+import '../moments/moments_page copy.dart';
 import '../moments/moments_page.dart';
 
 class BottomNav extends StatefulWidget {
@@ -15,23 +17,20 @@ class BottomNav extends StatefulWidget {
 
   @override
   State<BottomNav> createState() => _BottomNavState();
-
-
 }
 
 class _BottomNavState extends State<BottomNav> {
-
-
   @override
   Widget build(BuildContext context) {
     return bottomNav();
   }
+
   int _selectedIndex = 0;
   int currentIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Discover(),
-    const MomentsPage(),
+    CopyDiscover(),
+    CopyMomentsPage(),
     const TransportPage(),
     const ProfilePage(),
   ];
@@ -91,27 +90,24 @@ class _BottomNavState extends State<BottomNav> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 5),
                     child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ViewProfile()),
-                        );
-                      },
-                      child: CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Colors.grey[200],
-                        backgroundImage:AssetImage(
-                          'asset/icons/user.png',
-                        ) ,
-                      )
-                    ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewProfile()),
+                          );
+                        },
+                        child: CircleAvatar(
+                          radius: 15,
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage: AssetImage(
+                            'asset/icons/user.png',
+                          ),
+                        )),
                   ),
-
                 ],
               ),
             ),
-
           ],
         ),
         body: Center(
@@ -128,8 +124,7 @@ class _BottomNavState extends State<BottomNav> {
             items: <BottomNavigationBarItem>[
               // discover item
               BottomNavigationBarItem(
-                icon:
-                    Image.asset(
+                icon: Image.asset(
                   "asset/icons/compass.png",
                   width: width * 0.23,
                   height: width * 0.05,

@@ -3,15 +3,22 @@ import 'package:etiocart/mobile/views/events/payment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../repository/event_servics.dart';
+import '../../model/export_model.dart';
+
 class BookEvent extends StatefulWidget {
-  BookEvent({Key? key}) : super(key: key);
+  final int id;
+  const BookEvent({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   State<BookEvent> createState() => _BookEventState();
 }
 
 class _BookEventState extends State<BookEvent> {
-  bool confirmed = true;
+  late bool confirmed = true;
 
   int price = 10;
 
@@ -38,6 +45,8 @@ class _BookEventState extends State<BookEvent> {
 
   @override
   Widget build(BuildContext context) {
+    final Future<List<Tickets>> _futureTickets =
+        EventServics().fetchTicket(widget.id);
     return Scaffold(
       backgroundColor: StylingData.bgColor,
       appBar: AppBar(
@@ -54,12 +63,57 @@ class _BookEventState extends State<BookEvent> {
           children: [
             Row(
               children: [
-                const Text('Choose Number of Seats', style: StylingData.titleText2,),
+                const Text(
+                  'Choose Number of Seats',
+                  style: StylingData.titleText2,
+                ),
               ],
             ),
-            economyClass(), vipClass(), vvipClass(), specialClass(),
+            FutureBuilder<List<Tickets>>(
+              future: _futureTickets,
+              builder: (BuildContext context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text("some error ${snapshot.error}"),
+                  );
+                }
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              // snapshot.data![index].id.toString(),
+
+                              ' ${snapshot.data![index].ticketType!.name}',
+                              style: StylingData.subText2,
+                            ),
+                            Text(
+                              // snapshot.data![index].id.toString(),
+
+                              ' ${snapshot.data![index].priceBirr}',
+                              style: StylingData.subText2,
+                            ),
+                            plusMinusCounter()
+                          ],
+                        );
+                      });
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+            // economyClass(),
+            // vipClass(),
+            // vvipClass(),
+            // specialClass(),
             Spacer(),
-            bookEventButton(context)],
+            bookEventButton(context)
+          ],
         ),
       ),
     );
@@ -68,28 +122,52 @@ class _BookEventState extends State<BookEvent> {
   economyClass() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [Text('Economy',style: StylingData.subText2,), plusMinusCounter()],
+      children: [
+        Text(
+          'Economy',
+          style: StylingData.subText2,
+        ),
+        plusMinusCounter()
+      ],
     );
   }
 
   vipClass() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [ Text('VIP',style: StylingData.subText2,), plusMinusCounter()],
+      children: [
+        Text(
+          'VIP',
+          style: StylingData.subText2,
+        ),
+        plusMinusCounter()
+      ],
     );
   }
 
   vvipClass() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [ Text('VVIP',style: StylingData.subText2,), plusMinusCounter()],
+      children: [
+        Text(
+          'VVIP',
+          style: StylingData.subText2,
+        ),
+        plusMinusCounter()
+      ],
     );
   }
 
   specialClass() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [ Text('Special Class',style: StylingData.subText2,), plusMinusCounter()],
+      children: [
+        Text(
+          'Special Class',
+          style: StylingData.subText2,
+        ),
+        plusMinusCounter()
+      ],
     );
   }
 
@@ -157,20 +235,19 @@ class _BookEventState extends State<BookEvent> {
       width: width * 0.8,
       child: ElevatedButton(
         style: ButtonStyle(
-          //sets the button elevation to zero
+            //sets the button elevation to zero
             elevation: MaterialStateProperty.all(0),
             backgroundColor: MaterialStateProperty.all(StylingData.purple1),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  side: const BorderSide(color: StylingData.purple1),
-                  borderRadius: BorderRadius.circular(25),
-                ))),
+              side: const BorderSide(color: StylingData.purple1),
+              borderRadius: BorderRadius.circular(25),
+            ))),
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const Payment()),
           );
-
         },
         child: const Text(
           'Continue-100 Birr',
