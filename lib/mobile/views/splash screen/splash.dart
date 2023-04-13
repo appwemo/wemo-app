@@ -50,7 +50,7 @@ class Splash extends StatelessWidget {
               ));
         },
         child: const Text(
-          'Sign In',
+          'Next',
           style: StylingData.buttonText,
         ),
       ),

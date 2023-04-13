@@ -39,12 +39,12 @@ class ProfilePage extends StatelessWidget {
                         child: InkWell(
                           onTap: () {},
                           child: CircleAvatar(
-                            radius: 23,
-                            backgroundColor: StylingData.purple1,
+                              radius: 23,
+                              backgroundColor: StylingData.purple1,
                               child: Icon(
-                            CupertinoIcons.pen,
-                            color: StylingData.bgColor,
-                          )),
+                                CupertinoIcons.pen,
+                                color: StylingData.bgColor,
+                              )),
                         ),
                       )
                     ],
@@ -165,42 +165,45 @@ class ProfilePage extends StatelessWidget {
                           ),
                           context: context,
                           builder: (BuildContext context) {
-                            return SizedBox(
-                              height: height * 0.2,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.all(10),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Text(
-                                        'Logout',
-                                        style: StylingData.logoutButton,
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: SizedBox(
+                                // height: height * 0.2,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.all(10),
                                       ),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      child: Text(
-                                        'Are You Sure You want to Logout?',
-                                        style: StylingData.titleText3,
+                                      const Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Text(
+                                          'Logout',
+                                          style: StylingData.logoutButton,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        // mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          logOut(context),
-                                          const Spacer(),
-                                          cancel(context)
-                                        ],
+                                      const Padding(
+                                        padding: EdgeInsets.only(bottom: 20),
+                                        child: Text(
+                                          'Are You Sure You want to Logout?',
+                                          style: StylingData.titleText3,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          // mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            logOut(context),
+                                            const Spacer(),
+                                            cancel(context)
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
