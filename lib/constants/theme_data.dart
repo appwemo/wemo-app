@@ -16,7 +16,7 @@ class StylingData {
   static const TextStyle titleText2 = TextStyle(
     color: Colors.black,
     fontSize: 20,
-    // fontFamily: 'SF-Pro',
+    fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
   );
   static const TextStyle logoutButton = TextStyle(
@@ -35,7 +35,8 @@ class StylingData {
     fontSize: 18,
     // fontFamily: 'SF-Pro',
     fontWeight: FontWeight.w500,
-  );  static const TextStyle mediumText = TextStyle(
+  );
+  static const TextStyle mediumText = TextStyle(
     color: Colors.black,
     fontSize: 18,
     // fontFamily: 'SF-Pro',

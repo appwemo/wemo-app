@@ -36,56 +36,42 @@ class ProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Center(
-              child: FutureBuilder<getuser>(
-                future: _getUser,
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text("some error ${snapshot.error}");
-                  }
-                  if (snapshot.hasData) {
-                    getuser? _user = snapshot.data;
-                    return Column(
-                      children: [
-                        Stack(
-                          children: [
-                            CircleAvatar(
-                              radius: 70,
-                              backgroundColor:
-                                  StylingData.purple1.withOpacity(0.08),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 100, left: 100),
-                              child: InkWell(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ViewProfile(data: _user)),
-                                ),
-                                child: CircleAvatar(
-                                    radius: 23,
-                                    backgroundColor: StylingData.purple1,
-                                    child: Icon(
-                                      CupertinoIcons.pen,
-                                      color: StylingData.bgColor,
-                                    )),
-                              ),
-                            )
-                          ],
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 70,
+                        backgroundColor: StylingData.purple1.withOpacity(0.08),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 100, left: 100),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ViewProfile(data: userId)),
+                          ),
+                          child: CircleAvatar(
+                              radius: 23,
+                              backgroundColor: StylingData.purple1,
+                              child: Icon(
+                                CupertinoIcons.pen,
+                                color: StylingData.bgColor,
+                              )),
                         ),
-                        Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              // 'Andrew Ansley',
-                              '${snapshot.data!.user!.firstName} ${snapshot.data!.user!.lastName}',
-                              style: StylingData.bigBoldText,
-                            ))
-                      ],
-                    );
-                  }
-                  return CircularProgressIndicator();
-                },
+                      )
+                    ],
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        // 'Andrew Ansley',
+                        '${userId!.user!.firstName} ${userId!.user!.lastName}',
+                        style: StylingData.bigBoldText,
+                      ))
+                ],
               ),
             ),
           ),
@@ -195,42 +181,45 @@ class ProfilePage extends StatelessWidget {
                           ),
                           context: context,
                           builder: (BuildContext context) {
-                            return SizedBox(
-                              height: height * 0.2,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.all(10),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Text(
-                                        'Logout',
-                                        style: StylingData.logoutButton,
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: SizedBox(
+                                // height: height * 0.2,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.all(10),
                                       ),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      child: Text(
-                                        'Are You Sure You want to Logout?',
-                                        style: StylingData.titleText3,
+                                      const Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Text(
+                                          'Logout',
+                                          style: StylingData.logoutButton,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        // mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          logOut(context),
-                                          const Spacer(),
-                                          cancel(context)
-                                        ],
+                                      const Padding(
+                                        padding: EdgeInsets.only(bottom: 20),
+                                        child: Text(
+                                          'Are You Sure You want to Logout?',
+                                          style: StylingData.titleText3,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          // mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            logOut(context),
+                                            const Spacer(),
+                                            cancel(context)
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

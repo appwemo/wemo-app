@@ -48,9 +48,9 @@ class AuthService extends AuthenticationRepository {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         print(data);
-        print("Login succesfully");
+        print("Signup succesfully");
       } else {
-        print(' Login failed');
+        print(' Signup failed');
       }
     } catch (e) {
       print(e.toString());

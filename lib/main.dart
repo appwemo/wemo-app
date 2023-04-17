@@ -102,14 +102,19 @@ class MyHomePageState extends State<MyHomePage> {
             MaterialPageRoute(
                 builder: (context) =>
                     // isLoggedIn ? LoginScreen() : BottomNavBar()
-                    // Splash()
-                    OnBoardingSCreen())));
-    return Container(
-        color: StylingData.bgColor,
-        //splash screen file
-        child: Icon(
-          CupertinoIcons.airplane,
-          size: 50,
-        ));
+                    Splash())));
+    return SafeArea(
+      child: Container(
+          color: StylingData.bgColor,
+          //splash screen file
+          child: Scaffold(
+            body: Center(
+              child: Text(
+                'Icon',
+                style: StylingData.titleText,
+              ),
+            ),
+          )),
+    );
   }
 }

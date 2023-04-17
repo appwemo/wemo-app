@@ -49,21 +49,19 @@ class Notifications extends StatelessWidget {
   }
 
   Widget notificationViewer(BuildContext context) {
-    return SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: ListView.builder(
-          itemCount: 4,
-          shrinkWrap: true,
-          itemBuilder: (
-            context,
-            index,
-          ) {
-            return Padding(
-              padding: const EdgeInsets.all(10),
-              child: notificationBody(context),
-            );
-          },
-        ));
+    return ListView.builder(
+      itemCount: 10,
+      shrinkWrap: true,
+      itemBuilder: (
+        context,
+        index,
+      ) {
+        return Padding(
+          padding: const EdgeInsets.all(10),
+          child: notificationBody(context),
+        );
+      },
+    );
   }
 
   Widget notificationCard(BuildContext context) {
@@ -160,18 +158,19 @@ class Notifications extends StatelessWidget {
               const EdgeInsets.only(left: 15, right: 15, top: 8, bottom: 8),
           child: CircleAvatar(
             radius: 35,
-            backgroundColor: StylingData.purple1,
+            backgroundColor: StylingData.purple1.withOpacity(0.08),
             child: const Icon(CupertinoIcons.ticket,
-                color: StylingData.bgColor, size: 30),
+                color: StylingData.frColor, size: 30),
           ),
         ),
         Column(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('Notification title', style: StylingData.titleText2),
-                Text('notification Date', style: StylingData.titleText3),
+              children: [
+                Text('Notification title', style: StylingData.subText2),
+                Text('Date', style: StylingData.subText),
+                Text('notification Date', style: StylingData.subText3),
               ],
             ),
           ],
