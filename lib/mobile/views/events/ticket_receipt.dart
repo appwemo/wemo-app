@@ -1,9 +1,15 @@
 import 'package:etiocart/constants/theme_data.dart';
+import 'package:etiocart/mobile/model/user/getuser_model.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../model/event_model.dart';
+
 class TicketReceipt extends StatelessWidget {
-  const TicketReceipt({Key? key}) : super(key: key);
+  final getuser? user;
+  final Events? data;
+  const TicketReceipt({Key? key, required this.user, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +21,9 @@ class TicketReceipt extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Padding(padding: EdgeInsets.all(15),
-            child: qrGenerated(),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: qrGenerated(),
             ),
             Padding(
               padding: EdgeInsets.all(15),
@@ -38,7 +45,6 @@ class TicketReceipt extends StatelessWidget {
               padding: EdgeInsets.all(20),
               child: downloadTicketButton(context),
             ),
-
           ],
         ));
   }
@@ -59,7 +65,8 @@ class TicketReceipt extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'National Music Festival',
+              // 'National Music Festival',
+              '${data!.title}',
               style: StylingData.titleText2,
             ),
             Text('Awash Bank', style: StylingData.titleText3),
@@ -83,13 +90,16 @@ class TicketReceipt extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
-          children: const [
+          children: [
             Text(
               'Full Name',
               style: StylingData.titleText3,
             ),
             Spacer(),
-            Text('Andrew Ansley', style: StylingData.titleText2)
+            Text(
+                // 'Andrew Ansley',
+                '${user!.user!.firstName} ${user!.user!.lastName}',
+                style: StylingData.titleText2)
           ],
         ),
         Row(

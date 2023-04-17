@@ -1,14 +1,20 @@
 import 'package:etiocart/constants/theme_data.dart';
+import 'package:etiocart/mobile/model/user/getuser_model.dart';
 import 'package:etiocart/mobile/views/events/ticket_list_page.dart';
 import 'package:etiocart/mobile/views/help_center/help_center.dart';
 import 'package:etiocart/mobile/views/profile/view_profile.dart';
 import 'package:etiocart/mobile/views/security/security_page.dart';
 import 'package:etiocart/mobile/views/wallet/wallet.dart';
+import 'package:etiocart/repository/user_profile_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// import '../../model/user/getuser_model.dart';
+import '../events/ticket_list_page copy.dart';
+
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  final getuser? userId;
+  const ProfilePage({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,11 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  profileBody(context) {
+  profileBody(
+    context,
+  ) {
+    final Future<getuser> _getUser = UserAccountSerivcs().getUserProfileID(3);
+
     var height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
@@ -26,46 +36,66 @@ class ProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Center(
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 70,
-                        backgroundColor: StylingData.purple1.withOpacity(0.08),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 100, left: 100),
-                        child: InkWell(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundColor: StylingData.purple1,
-                              child: Icon(
-                            CupertinoIcons.pen,
-                            color: StylingData.bgColor,
-                          )),
+              child: FutureBuilder<getuser>(
+                future: _getUser,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("some error ${snapshot.error}");
+                  }
+                  if (snapshot.hasData) {
+                    getuser? _user = snapshot.data;
+                    return Column(
+                      children: [
+                        Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 70,
+                              backgroundColor:
+                                  StylingData.purple1.withOpacity(0.08),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 100, left: 100),
+                              child: InkWell(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ViewProfile(data: _user)),
+                                ),
+                                child: CircleAvatar(
+                                    radius: 23,
+                                    backgroundColor: StylingData.purple1,
+                                    child: Icon(
+                                      CupertinoIcons.pen,
+                                      color: StylingData.bgColor,
+                                    )),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                  const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        'Andrew Ansley',
-                        style: StylingData.bigBoldText,
-                      ))
-                ],
+                        Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              // 'Andrew Ansley',
+                              '${snapshot.data!.user!.firstName} ${snapshot.data!.user!.lastName}',
+                              style: StylingData.bigBoldText,
+                            ))
+                      ],
+                    );
+                  }
+                  return CircularProgressIndicator();
+                },
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(10),
             child: InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ViewProfile()),
-              ),
+              // onTap: () => Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => ViewProfile(data: )),
+              // ),
               child: Row(
                 children: const [
                   Text(
@@ -143,7 +173,7 @@ class ProfilePage extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TicketListPage()),
+                MaterialPageRoute(builder: (context) => CopyTicketListPage()),
               ),
               child: Row(
                 children: const [

@@ -4,6 +4,7 @@ import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/authentication/mobile_sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'mobile/views/splash screen/onboarding/onboardig_view.dart';
 import 'mobile/views/splash screen/splash.dart';
 import 'mobile/views/authentication/mobile_sign_in.dart';
 // import './constants/my_shared_pref.dart';
@@ -46,9 +47,11 @@ class _MyAppState extends State<MyApp> {
     {
       return MaterialApp(
         theme: ThemeData(
-          useMaterial3: true,
+            useMaterial3: true,
             //toset theme font for the entire app
-            fontFamily: 'SF-Pro', colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber)),
+            fontFamily: 'SF-Pro',
+            colorScheme:
+                ColorScheme.fromSwatch().copyWith(secondary: Colors.amber)),
         //checks if LoggedIn value is true
         //if the value is true it presents LoginScreen()
         //if not then the user has already logged in so it
@@ -80,10 +83,9 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   //only called once the stateful widget is inserted into the widget tree
   void initState() {
-    super.initState();}
-    //we use a timer to show the splash screen
-
-
+    super.initState();
+  }
+  //we use a timer to show the splash screen
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,7 @@ class MyHomePageState extends State<MyHomePage> {
     Timer(
         Duration(seconds: 4),
         //after the 3 seconds the replacement is pushed into the screen
-            () => Navigator.pushReplacement(
+        () => Navigator.pushReplacement(
             context,
             //thus the replacement is BottomNavBar
             //as soon as the app starts and the stateful widget is inserted
@@ -99,13 +101,15 @@ class MyHomePageState extends State<MyHomePage> {
             // of showing that it will render the main screen BottomNavBar()
             MaterialPageRoute(
                 builder: (context) =>
-                // isLoggedIn ? LoginScreen() : BottomNavBar()
-Splash()
-            )));
+                    // isLoggedIn ? LoginScreen() : BottomNavBar()
+                    // Splash()
+                    OnBoardingSCreen())));
     return Container(
         color: StylingData.bgColor,
         //splash screen file
-        child: Icon(CupertinoIcons.airplane, size: 50,)
-    );
+        child: Icon(
+          CupertinoIcons.airplane,
+          size: 50,
+        ));
   }
 }

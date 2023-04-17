@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:etiocart/mobile/views/bottom_nav/bottom_nav.dart';
 import 'package:etiocart/mobile/views/discover/discover.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import '../../../constants/theme_data.dart';
 
 class MobileSignIn extends StatefulWidget {
@@ -11,6 +14,9 @@ class MobileSignIn extends StatefulWidget {
 }
 
 class _MobileSignInState extends State<MobileSignIn> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool isChecked = false;
   bool rememberMe = false;
   final bool _passwordVisible = false;
@@ -53,7 +59,7 @@ class _MobileSignInState extends State<MobileSignIn> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        resizeToAvoidBottomInset:false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: StylingData.bgColor,
         appBar: AppBar(
           elevation: 0,
@@ -103,17 +109,22 @@ class _MobileSignInState extends State<MobileSignIn> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
                     Text(
-                     'User Name',
-                     style: StylingData.subText2,
-                        ),
+                      'User Name',
+                      style: StylingData.subText2,
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: height * 0.01,
               ),
-              Padding(padding: const EdgeInsets.only(right: 10),
-              child: userNameField(width, height),),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: userNameField(
+                  width,
+                  height,
+                ),
+              ),
               SizedBox(
                 height: height * 0.01,
               ),
@@ -132,16 +143,18 @@ class _MobileSignInState extends State<MobileSignIn> {
               SizedBox(
                 height: height * 0.01,
               ),
-              Padding(padding: const EdgeInsets.only(right: 10),
-                child: passWordField(width, height),),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: passWordField(width, height),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
-                shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.resolveWith(getColor),
                       value: isChecked,
@@ -153,7 +166,9 @@ class _MobileSignInState extends State<MobileSignIn> {
                     ),
                     Text(
                       'Remember me?',
-                      style: isChecked ? StylingData.subText2 : StylingData.subText,
+                      style: isChecked
+                          ? StylingData.subText2
+                          : StylingData.subText,
                     ),
                     // const Text(
                     //   'Forgot Password?',
@@ -165,7 +180,7 @@ class _MobileSignInState extends State<MobileSignIn> {
               SizedBox(
                 height: height * 0.03,
               ),
-              signUpButton(context),
+              signUpButton(context, _emailController, _passwordController),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -183,11 +198,15 @@ class _MobileSignInState extends State<MobileSignIn> {
         ),
       );
 
-  userNameField(double width, double height) {
+  userNameField(
+    double width,
+    double height,
+  ) {
     return SizedBox(
       width: width * 0.95,
       height: height * 0.06,
       child: TextFormField(
+        controller: _emailController,
         autofocus: false,
         maxLines: 1,
         decoration: InputDecoration(
@@ -197,10 +216,9 @@ class _MobileSignInState extends State<MobileSignIn> {
             filled: true,
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: StylingData.grey3)
-            ),
+                borderSide: BorderSide(color: StylingData.grey3)),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:StylingData.grey3),
+              borderSide: BorderSide(color: StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: 'Enter username',
@@ -216,6 +234,7 @@ class _MobileSignInState extends State<MobileSignIn> {
       width: width * 0.95,
       height: height * 0.06,
       child: TextFormField(
+        controller: _passwordController,
         autofocus: false,
         maxLines: 1,
         obscureText: _passwordVisible,
@@ -227,10 +246,9 @@ class _MobileSignInState extends State<MobileSignIn> {
             filled: true,
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: StylingData.grey3)
-            ),
+                borderSide: BorderSide(color: StylingData.grey3)),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:StylingData.grey3),
+              borderSide: BorderSide(color: StylingData.grey3),
               borderRadius: BorderRadius.circular(10),
             ),
             labelText: 'Enter username',
@@ -241,7 +259,8 @@ class _MobileSignInState extends State<MobileSignIn> {
     );
   }
 
-  signUpButton(context) {
+  signUpButton(
+      context, TextEditingController email, TextEditingController password) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
@@ -255,17 +274,84 @@ class _MobileSignInState extends State<MobileSignIn> {
             backgroundColor: MaterialStateProperty.all(StylingData.purple1),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-              side: BorderSide(color:StylingData.purple1),
+              side: BorderSide(color: StylingData.purple1),
               borderRadius: BorderRadius.circular(25),
             ))),
-        onPressed: () {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                  // isLoggedIn ? LoginScreen() : BottomNavBar()
-                  BottomNav()
-              ));
+        onPressed: () async {
+          String baseUr = "http://167.71.12.36:8080/api/rest/login/user";
+          try {
+            print("object");
+            final response = await post(Uri.parse(baseUr),
+                body: {'email': email.text, 'password': password.text});
+            print(response);
+            print(response.statusCode);
+
+            if (response.statusCode == 200) {
+              var data = jsonDecode(response.body.toString());
+              print(data);
+
+              setState(() {
+                final snackBar = SnackBar(
+                  shape: StadiumBorder(),
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.green,
+                  content: Row(
+                    children: [
+                      Icon(
+                        Icons.sms_failed_sharp,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Login succesfully",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              });
+              print("Login succesfully");
+
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          // isLoggedIn ? LoginScreen() : BottomNavBar()
+                          BottomNav()));
+            } else {
+              final snackBar = SnackBar(
+                shape: StadiumBorder(),
+                behavior: SnackBarBehavior.floating,
+                backgroundColor: Colors.red,
+                content: Row(
+                  children: [
+                    Icon(
+                      Icons.sms_failed_sharp,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "The verficiatin isnt correct! Please try again.",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              // setState(() {
+
+              // });
+
+              print('Login failed');
+            }
+          } catch (e) {
+            print(e.toString());
+          }
         },
         child: const Text(
           'Sign In',

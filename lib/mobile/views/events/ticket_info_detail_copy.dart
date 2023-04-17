@@ -6,14 +6,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/export_model.dart';
+import '../../model/user/getuser_model.dart';
 
 class CopyTicketInformationDetail extends StatefulWidget {
   final int id;
+  final getuser? user;
 
   final Events data;
 
   CopyTicketInformationDetail(
-      {super.key, required this.data, required this.id});
+      {super.key, required this.data, required this.id, required this.user});
   @override
   State<CopyTicketInformationDetail> createState() =>
       _TicketInformationDetailState();
@@ -80,6 +82,8 @@ class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
             MaterialPageRoute(
                 builder: (context) => BookEvent(
                       id: 149,
+                      data: widget.data,
+                      user: widget.user,
                     )),
           );
         },

@@ -4,9 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/theme_data.dart';
+import '../../model/export_model.dart';
+import '../../model/user/getuser_model.dart';
 
 class ReviewSummary extends StatelessWidget {
-  const ReviewSummary({Key? key}) : super(key: key);
+  const ReviewSummary({Key? key, required this.data, required this.user})
+      : super(key: key);
+  final Events? data;
+  final getuser? user;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,9 @@ class ReviewSummary extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('National Music Festival',
+                Text(
+                    // 'National Music Festival',
+                    '${data!.title}',
                     style: StylingData.titleText2),
                 const Text(
                   '18:00 - 23:00 PM (GMT+7:00)',
@@ -83,7 +90,10 @@ class ReviewSummary extends StatelessWidget {
                     style: StylingData.subText2,
                   ),
                   Spacer(),
-                  Text('Andrew Ansley', style: StylingData.subText)
+                  Text(
+                      // 'Andrew Ansley',
+                      '${user!.user!.firstName} ${user!.user!.lastName}',
+                      style: StylingData.subText)
                 ],
               ),
             ),
@@ -93,7 +103,10 @@ class ReviewSummary extends StatelessWidget {
                 children: [
                   Text('Phone', style: StylingData.subText2),
                   Spacer(),
-                  Text('+111 123 543 0921', style: StylingData.subText)
+                  Text(
+                      // '+111 123 543 0921',
+                      '${user!.user!.phoneNumber}',
+                      style: StylingData.subText)
                 ],
               ),
             ),
@@ -103,7 +116,9 @@ class ReviewSummary extends StatelessWidget {
                 children: [
                   Text('Email', style: StylingData.subText2),
                   Spacer(),
-                  Text('andrewansley@gmail.com', style: StylingData.subText)
+                  Text("${user!.user!.email}",
+                      // 'andrewansley@gmail.com',
+                      style: StylingData.subText)
                 ],
               ),
             ),
@@ -270,7 +285,11 @@ class ReviewSummary extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TicketReceipt()),
+            MaterialPageRoute(
+                builder: (context) => TicketReceipt(
+                      user: user,
+                      data: data,
+                    )),
           );
         },
         child: const Text(

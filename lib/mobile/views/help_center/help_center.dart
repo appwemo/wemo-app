@@ -33,11 +33,11 @@ class HelpCenter extends StatelessWidget {
             // automaticallyImplyLeading: false,
             title: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfilePage()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const ProfilePage()),
+                  // );
                 },
                 child: const Text(
                   'Help center',
@@ -68,16 +68,10 @@ class HelpCenter extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            children: [
-              FAQ(),
-              ContactUS(),
-              Policies()
-            ],
+            children: [FAQ(), ContactUS(), Policies()],
           ),
         ),
       ),
     );
   }
-
-
 }

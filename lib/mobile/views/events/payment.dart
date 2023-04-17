@@ -3,8 +3,14 @@ import 'package:etiocart/mobile/views/events/review_summary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/export_model.dart';
+import '../../model/user/getuser_model.dart';
+
 class Payment extends StatelessWidget {
-  const Payment({Key? key}) : super(key: key);
+  final Events data;
+  final getuser? user;
+  const Payment({Key? key, required this.data, required this.user})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +94,11 @@ class Payment extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ReviewSummary()),
+            MaterialPageRoute(
+                builder: (context) => ReviewSummary(
+                      data: data,
+                      user: user,
+                    )),
           );
         },
         child: const Text(

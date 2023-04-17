@@ -4,15 +4,23 @@ import 'package:etiocart/repository/event_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../repository/user_profile_servics.dart';
 import '../../model/export_model.dart';
+import '../../model/user/getuser_model.dart';
 import '../events/ticket_info_detail_copy.dart';
 
 class CopyDiscover extends StatelessWidget {
-  CopyDiscover({Key? key}) : super(key: key);
+  final getuser? user;
+  CopyDiscover({Key? key, required this.user}) : super(key: key);
   final Future<List<Events>> _getall_Event = EventServics().fetchItems();
 
   @override
   Widget build(BuildContext context) {
+    // final Future<getuser> _getUser = UserAccountSerivcs().getUserProfileID(id);
+    Future<Future<List<Events>>> _refreshItem(BuildContext, context) async {
+      return EventServics().fetchItems();
+    }
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -34,7 +42,8 @@ class CopyDiscover extends StatelessWidget {
                         children: [
                           Container(
                             height: height * 0.4,
-                            child: featuredContent(context, snapshot.data),
+                            child:
+                                featuredContent(context, snapshot.data, user),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 10, right: 10),
@@ -58,6 +67,7 @@ class CopyDiscover extends StatelessWidget {
                                         CopyTicketInformationDetail(
                                           data: snapshot.data![index],
                                           id: index,
+                                          user: user,
                                         )),
                               ),
                               child: FittedBox(
@@ -161,7 +171,7 @@ class CopyDiscover extends StatelessWidget {
             ));
   }
 
-  featuredContent(context, List<Events>? data) {
+  featuredContent(context, List<Events>? data, getuser? getuser) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return ListView.builder(
@@ -175,6 +185,7 @@ class CopyDiscover extends StatelessWidget {
                 builder: (context) => CopyTicketInformationDetail(
                       data: data[index],
                       id: index,
+                      user: user,
                     )),
           ),
           child: Column(

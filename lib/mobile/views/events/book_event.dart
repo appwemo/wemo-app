@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 
 import '../../../repository/event_servics.dart';
 import '../../model/export_model.dart';
+import '../../model/user/getuser_model.dart';
 
 class BookEvent extends StatefulWidget {
+  final Events data;
   final int id;
+  final getuser? user;
   const BookEvent({
     Key? key,
     required this.id,
+    required this.data,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -246,7 +251,11 @@ class _BookEventState extends State<BookEvent> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Payment()),
+            MaterialPageRoute(
+                builder: (context) => Payment(
+                      data: widget.data,
+                      user: widget.user,
+                    )),
           );
         },
         child: const Text(

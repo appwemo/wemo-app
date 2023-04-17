@@ -1,7 +1,7 @@
 class EventTicketModel {
   List<Tickets>? tickets;
 
-  EventTicketModel({this.tickets});
+  EventTicketModel({required this.tickets});
 
   EventTicketModel.fromJson(Map<String, dynamic> json) {
     if (json['tickets'] != null) {

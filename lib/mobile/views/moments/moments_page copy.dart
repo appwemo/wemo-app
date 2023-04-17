@@ -3,8 +3,11 @@ import 'package:etiocart/mobile/model/ad_companies_model.dart';
 import 'package:etiocart/repository/advertizement_co_servics.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/user/getuser_model.dart';
+
 class CopyMomentsPage extends StatelessWidget {
-  const CopyMomentsPage({Key? key}) : super(key: key);
+  final getuser? user;
+  const CopyMomentsPage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,8 @@ class CopyMomentsPage extends StatelessWidget {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                Text("${snpashot.data![index].name}")
+                                Text("${snpashot.data![index].name}"),
+                                Text("${user!.user!.email}"),
                               ]),
                         ),
                       );

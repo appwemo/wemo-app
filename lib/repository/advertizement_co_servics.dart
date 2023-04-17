@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:etiocart/mobile/model/ad_companies_model.dart';
 import 'package:http/http.dart' as http;
 

@@ -57,13 +57,13 @@ class _TicketInformationDetailState extends State<TicketInformationDetail> {
               borderRadius: BorderRadius.circular(25),
             ))),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => BookEvent(
-                      id: 149,
-                    )),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (context) => BookEvent(
+          //             id: 149,
+          //           )),
+          // );
         },
         child: const Text(
           'Book Event',

@@ -3,19 +3,25 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 abstract class AuthenticationRepository {
-  Future<void>? signout();
   Future<void> signupForm(String? email, String? password);
   Future<void> login(String? email, String? password);
+  Future<void>? signout();
+  Future<void>? deletMyAccount();
+  // Future<void>? Useraccount();
 }
 
 class AuthService extends AuthenticationRepository {
   // LOGIN AND SIGN UP CORRECTLY FROM BACKEND API TEST
   //  "email": "dawit.aseged@gmail.com",
-  //   "password": "password"
+  // "password": "password"
 
   @override
   @override
   Future<void>? signout() {
+    return null;
+  }
+
+  Future<void>? deletMyAccount() {
     return null;
   }
 
