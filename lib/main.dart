@@ -102,7 +102,7 @@ class MyHomePageState extends State<MyHomePage> {
             MaterialPageRoute(
                 builder: (context) =>
                     // isLoggedIn ? LoginScreen() : BottomNavBar()
-                    Splash())));
+                    OnBoardingSCreen())));
     return SafeArea(
       child: Container(
           color: StylingData.bgColor,
