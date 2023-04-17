@@ -34,10 +34,34 @@ class CopyTicketListPage extends StatelessWidget {
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return Container(
+                              color: Colors.white,
                               height: 100,
-                              width: 100,
-                              child:
+                              // width: 100,
+                              child: Column(
+                                children: [
+                                  Text(snapshot
+                                          .data![index].boughtFor!.firstName
+                                          .toString() +
+                                      snapshot.data![index].boughtFor!.lastName
+                                          .toString()),
                                   Text(snapshot.data![index].amount.toString()),
+                                  Container(
+                                    color: Colors.grey,
+                                    height: 50,
+                                    // width: 100,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                            'Title ${snapshot.data![index].ticket!.event.title}'),
+                                        Text(
+                                            'id ${snapshot.data![index].ticket!.id}')
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             );
                           }),
                     );
