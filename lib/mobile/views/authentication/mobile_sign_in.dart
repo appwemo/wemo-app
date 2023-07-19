@@ -2,9 +2,15 @@ import 'dart:convert';
 
 import 'package:etiocart/mobile/views/bottom_nav/bottom_nav.dart';
 import 'package:etiocart/mobile/views/discover/discover.dart';
+import 'package:etiocart/repository/authentication_servics.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/theme_data.dart';
+import 'package:http/http.dart' as http;
+
+import '../bottom_nav/load_user_data_id.dart';
 
 class MobileSignIn extends StatefulWidget {
   const MobileSignIn({super.key});
@@ -77,6 +83,8 @@ class _MobileSignInState extends State<MobileSignIn> {
   }
 
   signInForm(
+          // String token,
+          // String getToken,
           double height,
           double width,
           Color Function(Set<MaterialState> states) getColor,
@@ -180,7 +188,11 @@ class _MobileSignInState extends State<MobileSignIn> {
               SizedBox(
                 height: height * 0.03,
               ),
-              signUpButton(context, _emailController, _passwordController),
+              _SubmitButton(
+                  email: _emailController.text,
+                  password: _passwordController.text),
+
+              // signUpButton(context, _emailController, _passwordController, tok),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -259,8 +271,8 @@ class _MobileSignInState extends State<MobileSignIn> {
     );
   }
 
-  signUpButton(
-      context, TextEditingController email, TextEditingController password) {
+  signUpButton(context, TextEditingController email,
+      TextEditingController password, String token, String getToken) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
@@ -315,12 +327,12 @@ class _MobileSignInState extends State<MobileSignIn> {
               });
               print("Login succesfully");
 
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          // isLoggedIn ? LoginScreen() : BottomNavBar()
-                          BottomNav()));
+              // Navigator.pushReplacement(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) =>
+              //             // isLoggedIn ? LoginScreen() : BottomNavBar()
+              //             BottomNav()));
             } else {
               final snackBar = SnackBar(
                 shape: StadiumBorder(),
@@ -358,6 +370,78 @@ class _MobileSignInState extends State<MobileSignIn> {
           style: StylingData.buttonText,
         ),
       ),
+    );
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  _SubmitButton({
+    Key? key,
+    required this.email,
+    required this.password,
+  }) : super(key: key);
+
+  final String email, password;
+
+  @override
+  Widget build(BuildContext context) {
+    String tokenID;
+    String getToken;
+    void _hel0o(String email, password) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String baseUr = "http://167.71.12.36:8080/api/rest/login/user";
+      try {
+        print("object");
+        final response = await http.post(Uri.parse(baseUr),
+            // headers: {"alg": "HS256", "typ": "JWT"},
+            body: {'email': email, 'password': password});
+        // print(response);
+        print(response.statusCode);
+        var data = jsonDecode(response.body);
+
+        if (response.statusCode == 200) {
+          var myToken = data['login']['token'];
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          await pref.setString("login", myToken);
+          getToken = pref.getString("login")!;
+          Map<String, dynamic> JwtDecoderToken = JwtDecoder.decode(getToken);
+
+          tokenID = JwtDecoderToken["https://hasura.io/jwt/claims"]
+              ["x-hasura-user-id"];
+
+          // await storage.write(key: "token", value: myToken);
+
+          // prefs.setString("token", "${myToken}");
+          print(myToken);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LoadUserID()));
+
+          // prefs.setString('token',my myToken);
+
+          // print(data);
+          print("Login succesfully");
+        } else {
+          print(' Login failed');
+        }
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+
+    return ElevatedButton(
+      onPressed: () {
+        // final FireRepository _fre = FireAuthService();
+        // _fre.login(email, password);
+        _hel0o("dawit.aseged@gmail.com", "password");
+      },
+      // () async {
+      //   _aa = await FireAuthService().pologin(email, password);
+      //   if ((condition)) {
+
+      //   }
+      //   print('hello');
+      // },
+      child: const Text('Loginn'),
     );
   }
 }

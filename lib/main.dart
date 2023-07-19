@@ -2,12 +2,15 @@
 import 'dart:async';
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/authentication/mobile_sign_up.dart';
+import 'package:etiocart/mobile/views/bottom_nav/load_user_data_id.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'mobile/views/bottom_nav/bottom_nav.dart';
 import 'mobile/views/splash screen/onboarding/onboardig_view.dart';
 import 'mobile/views/splash screen/splash.dart';
 import 'mobile/views/authentication/mobile_sign_in.dart';
 // import './constants/my_shared_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'responsive.dart';
 
 void main() {
@@ -84,25 +87,49 @@ class MyHomePageState extends State<MyHomePage> {
   //only called once the stateful widget is inserted into the widget tree
   void initState() {
     super.initState();
+    // checkLoigin();
+    checkLoigin();
   }
+
   //we use a timer to show the splash screen
+  void checkLoigin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? val = pref.getString("login");
+    if (val != null) {
+      print("User is Logged in");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoadUserID()));
+    } else {
+      print("User isnt Logged in");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  // isLoggedIn ? LoginScreen() : BottomNavBar()
+                  MobileSignIn()));
+    }
+    // print('userlooged');
+    print("Check Token  " + val.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
+    // CopyTicketListPage
     //this is the splash screen container
-    Timer(
-        Duration(seconds: 4),
-        //after the 3 seconds the replacement is pushed into the screen
-        () => Navigator.pushReplacement(
-            context,
-            //thus the replacement is BottomNavBar
-            //as soon as the app starts and the stateful widget is inserted
-            //the app will render  Container at line 107 and after 3 seconds
-            // of showing that it will render the main screen BottomNavBar()
-            MaterialPageRoute(
-                builder: (context) =>
-                    // isLoggedIn ? LoginScreen() : BottomNavBar()
-                    OnBoardingSCreen())));
+    // Timer(Duration(seconds: 4),
+    //     //after the 3 seconds the replacement is pushed into the screen
+    //     () {
+    //   Navigator.pushReplacement(
+    //       context,
+    //       //thus the replacement is BottomNavBar
+    //       //as soon as the app starts and the stateful widget is inserted
+    //       //the app will render  Container at line 107 and after 3 seconds
+    //       // of showing that it will render the main screen BottomNavBar()
+    //       MaterialPageRoute(
+    //           builder: (context) =>
+    //               // isLoggedIn ? LoginScreen() : BottomNavBar()
+    //               OnBoardingSCreen()));
+    // });
     return SafeArea(
       child: Container(
           color: StylingData.bgColor,

@@ -45,9 +45,8 @@ class Splash extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                  // isLoggedIn ? LoginScreen() : BottomNavBar()
-                  MobileSignUp()
-              ));
+                      // isLoggedIn ? LoginScreen() : BottomNavBar()
+                      MobileSignUp()));
         },
         child: const Text(
           'Next',

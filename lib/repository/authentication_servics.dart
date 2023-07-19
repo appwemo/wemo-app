@@ -44,6 +44,9 @@ class AuthService extends AuthenticationRepository {
         // 'profile_picture': ""
         //REMAINING PROFILE PICTURE url FUNCITION
       });
+      // if (response.) {
+
+      // }
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
@@ -92,7 +95,8 @@ class AuthService extends AuthenticationRepository {
 
       // }
     } catch (e) {
-      print(e.toString());
+      // e.details"";
+      // print(e.mes());
     }
   }
 }

@@ -51,7 +51,7 @@ class TicketReceipt extends StatelessWidget {
 
   qrGenerated() {
     return Center(
-        child: QrImage(
+        child: QrImageView(
       data: "1234567890",
       version: QrVersions.auto,
       size: 200.0,

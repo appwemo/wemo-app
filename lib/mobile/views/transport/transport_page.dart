@@ -1,3 +1,4 @@
+import 'package:etiocart/mobile/views/transport/transport_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,135 +12,144 @@ class TransportPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SetLocation()));
+          },
+          child: Icon(Icons.send),
+        ),
         body: Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: height * 0.25,
-          color: Colors.grey[200],
-        ),
-        Container(
-          height: height * 0.08,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Mon',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+          children: [
+            Container(
+              width: double.infinity,
+              height: height * 0.25,
+              color: Colors.grey[200],
+            ),
+            Container(
+              height: height * 0.08,
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Mon',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     side: BorderSide(color: Colors.grey))))),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Tue',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Tue',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     side: BorderSide(color: Colors.grey))))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Wed',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.grey),
+                        )))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Thur',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.grey),
+                        )))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Fri',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.grey),
+                        )))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Sat',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.grey),
+                        )))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                        onPressed: () => {},
+                        child: Text(
+                          'Sun',
+                          style: StylingData.subText3,
+                        ),
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(color: Colors.grey),
+                        )))),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Wed',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    )))),
+            ),
+            Container(
+              height: height * 0.495,
+              child: ListView.builder(
+                itemCount: 5,
+                shrinkWrap: true,
+                itemBuilder: (context, index) => priceInfo(),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Thur',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    )))),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Fri',
-                      style: StylingData.subText3,
-                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    )))),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Sat',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    )))),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                    onPressed: () => {},
-                    child: Text(
-                      'Sun',
-                      style: StylingData.subText3,                    ),
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    )))),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: height*0.495,
-          child: ListView.builder(
-            itemCount: 5,
-            shrinkWrap: true,
-            itemBuilder: (context, index) => priceInfo(),),
-        )
-      ],
-    ));
+            )
+          ],
+        ));
   }
 
   priceInfo() {
@@ -149,15 +159,13 @@ class TransportPage extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 15, right: 15, top: 8, bottom: 8),
           child: CircleAvatar(
-            radius: 35,
-            backgroundColor: StylingData.grey3,
-            child: Container(
-              decoration: BoxDecoration(
-                color: StylingData.purple1,
-                borderRadius: BorderRadius.circular(10)
-              ),
-            )
-          ),
+              radius: 35,
+              backgroundColor: StylingData.grey3,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: StylingData.purple1,
+                    borderRadius: BorderRadius.circular(10)),
+              )),
         ),
         Column(
           children: [
@@ -168,11 +176,20 @@ class TransportPage extends StatelessWidget {
                     style: StylingData.mediumText),
                 Row(
                   children: [
-                    Text('800 Birr',style: StylingData.subText,),
-                    Text('500 km',style: StylingData.subText,),
+                    Text(
+                      '800 Birr',
+                      style: StylingData.subText,
+                    ),
+                    Text(
+                      '500 km',
+                      style: StylingData.subText,
+                    ),
                   ],
                 ),
-                Text('Selam Bus',style: StylingData.subText3,)
+                Text(
+                  'Selam Bus',
+                  style: StylingData.subText3,
+                )
               ],
             ),
           ],

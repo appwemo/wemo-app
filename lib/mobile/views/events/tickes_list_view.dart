@@ -4,14 +4,14 @@ import '../../../repository/request_tansport_servics.dart';
 import '../../model/request_transport_model.dart';
 import '../../model/transprt_request_model.dart';
 
-class CopyTicketListPage extends StatefulWidget {
-  CopyTicketListPage({Key? key}) : super(key: key);
+class ticketListView extends StatefulWidget {
+  ticketListView({Key? key}) : super(key: key);
 
   @override
-  State<CopyTicketListPage> createState() => _RequestDisplayState();
+  State<ticketListView> createState() => _RequestDisplayState();
 }
 
-class _RequestDisplayState extends State<CopyTicketListPage> {
+class _RequestDisplayState extends State<ticketListView> {
   TextEditingController controller = TextEditingController();
 
   bool isac = false;
@@ -30,17 +30,37 @@ class _RequestDisplayState extends State<CopyTicketListPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Transport Ticket"),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => traSearch()));
+              },
+              child: Text("Search"))
+        ],
       ),
       body: FutureBuilder<transportrequest>(
         future: _futureRequest,
         builder: (context, snapshot) {
+          // if () {
+
+          // }
+          //Check for errors
           if (snapshot.hasError) {
             return Center(child: Text('Some error occurred ${snapshot.error}'));
           }
           //Has data arrived
           if (snapshot.hasData) {
+            // if (snapshot.data!.getRequests!.responseList!.approved == "true") {}
+            // return Text('loding');
+            // List<GetEvents> parsed = snapshot.data;
+
             return Column(
               children: [
+                /* TextField(
+                  // controller: controller,
+                  // onChanged: searchTicket,
+                ), */
                 Container(
                   height: 650,
                   child: SingleChildScrollView(
@@ -66,7 +86,7 @@ class _RequestDisplayState extends State<CopyTicketListPage> {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 5),
                               child: Container(
-                                height: 370,
+                                height: 330,
                                 decoration: BoxDecoration(
                                     color: Colors.green[100],
                                     borderRadius:
@@ -210,7 +230,7 @@ class _RequestDisplayState extends State<CopyTicketListPage> {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: Container(
-                                height: 370,
+                                height: 330,
                                 decoration: BoxDecoration(
                                     color: Colors.grey[300],
                                     borderRadius:
@@ -355,7 +375,7 @@ class _RequestDisplayState extends State<CopyTicketListPage> {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: Container(
-                                height: 370,
+                                height: 330,
                                 decoration: BoxDecoration(
                                     color: Colors.grey[300],
                                     borderRadius:

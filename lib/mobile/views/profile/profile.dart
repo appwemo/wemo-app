@@ -8,14 +8,21 @@ import 'package:etiocart/mobile/views/wallet/wallet.dart';
 import 'package:etiocart/repository/user_profile_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import '../../model/user/getuser_model.dart';
+import '../authentication/mobile_sign_in.dart';
 import '../events/ticket_list_page copy.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   final getuser? userId;
   const ProfilePage({Key? key, required this.userId}) : super(key: key);
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewProfile(data: userId)),
+                                    ViewProfile(data: widget.userId)),
                           ),
                           child: CircleAvatar(
                               radius: 23,
@@ -68,7 +75,7 @@ class ProfilePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       child: Text(
                         // 'Andrew Ansley',
-                        '${userId!.user!.firstName} ${userId!.user!.lastName}',
+                        '${widget.userId!.user!.firstName} ${widget.userId!.user!.lastName}',
                         style: StylingData.bigBoldText,
                       ))
                 ],
@@ -292,7 +299,7 @@ class ProfilePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(25),
             ))),
         onPressed: () {
-          Navigator.pop(context);
+          signout();
         },
         child: const Text(
           'Yes, Logout',
@@ -300,5 +307,23 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signout() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.clear();
+    await pref.remove("login");
+
+    setState(() {
+      Future.delayed(const Duration(seconds: 4), () async {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => MobileSignIn()),
+            (Route<dynamic> route) => false);
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => MobileSignIn()),
+        // );
+      });
+    });
   }
 }

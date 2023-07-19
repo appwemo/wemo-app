@@ -1,6 +1,7 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/model/user/getuser_model.dart';
 import 'package:etiocart/mobile/model/user/updateuser_model.dart';
+import 'package:etiocart/mobile/views/bottom_nav/load_user_data_id.dart';
 import 'package:etiocart/mobile/views/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +174,7 @@ class _ViewProfileState extends State<ViewProfile> {
           }
           print("pass nav");
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => BottomNav()));
+              context, MaterialPageRoute(builder: (context) => LoadUserID()));
         },
         child: const Text(
           'Update',
