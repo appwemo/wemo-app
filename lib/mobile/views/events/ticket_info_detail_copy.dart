@@ -1,5 +1,6 @@
 import 'package:etiocart/constants/theme_data.dart';
 import 'package:etiocart/mobile/views/events/book_event.dart';
+import 'package:etiocart/mobile/views/events/ticket_info_location.dart';
 import 'package:etiocart/repository/event_servics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -33,6 +34,7 @@ class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
           foregroundColor: StylingData.frColor,
@@ -42,6 +44,9 @@ class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
         body: ListView(
           children: [
             eventPhotoCard(),
+            SizedBox(
+              height: 10,
+            ),
             dateTimeInfo(),
             locationInfo(),
             priceInfo(),
@@ -129,43 +134,57 @@ class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
         children: [
           Container(
             width: double.infinity,
-            height: height * 0.5,
+            height: height * 0.3,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: StylingData.purple1,
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   decoration: BoxDecoration(
                     color: StylingData.purple1,
                     borderRadius: BorderRadius.circular(10),
-                    //   image: const DecorationImage(
-                    //     fit: BoxFit.fill,
-                    //     image: AssetImage('assets/images/muz-green.png'),
-                    //   ),
+                    // image: const DecorationImage(
+                    //   fit: BoxFit.fill,
+                    //   image: AssetImage('assets/images/muz-green.png'),
                     // ),
+                    // ),
+                  ),
+                  child: Text(
+                    'Event Images',
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                 )
               ],
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 5, right: 5),
             child: Container(
-              padding: const EdgeInsets.only(top: 10),
+              alignment: Alignment.center,
+              height: 60,
+              // padding: const EdgeInsets.only(top: 10),
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.teal[50],
+                  borderRadius: BorderRadius.circular(15)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  /* Text(
                       // 'National Musicc Festival',
                       '${widget.data.title}',
-                      style: StylingData.bigBoldText),
+                      style: StylingData.bigBoldText), */
                   Text(
-                    " Bole Millenium ${widget.data.title}",
+                    "  ${widget.data.title}",
                     // 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s to make a type specimen book',
                     softWrap: true,
                     maxLines: 4,
@@ -269,7 +288,13 @@ class _TicketInformationDetailState extends State<CopyTicketInformationDetail> {
                         side: const BorderSide(color: StylingData.purple1),
                         borderRadius: BorderRadius.circular(25),
                       ))),
-                  onPressed: () => null,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TicketsInfoLocation()),
+                    );
+                  },
                   child: const Text(
                     'See Location on Maps',
                     style: TextStyle(color: Colors.white),
